@@ -130,6 +130,9 @@ for (i in 10000:100000) {
   sigmap <- res2[,2][i]
   pre2 <- c(pre2, rnorm(1, mup, sigmap))
 }
+############calculate mean
+mpre1 <- mean(pre1)
+mpre2 <- mean(pre2)
 ############plot
 #draw predicted distribution
 dfpre <- data.frame(p1 = pre1, p2 = pre2)
