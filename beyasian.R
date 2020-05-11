@@ -1,6 +1,7 @@
 library(ggplot2)
 library(ggpubr)
 library(patchwork)
+library(fpp2)
 setwd("~/Desktop/modules/Bayesian/cw")
 #need to change path if run on your own computer
 X <- read.csv('cw.csv')[,2]
@@ -16,11 +17,11 @@ for (i in 2:N) {
   #loglikelihood
   ratiotop <- sum(dnorm(X, mustar, sigmastar, log = T))
   #prior
-  ratiotop <- ratiotop + dbeta((mustar-3000)/600, 4.86, 3.44, log = T)+ dbeta((sigmastar-50)/200, 3, 3, log = T)
+  ratiotop <- ratiotop + dbeta((mustar-3000)/600, 2.98, 6.64, log = T)+ dbeta((sigmastar-50)/200, 3, 3, log = T)
   #loglikeihood
   ratiobot <- sum(dnorm(X, res1[i-1,1], res1[i-1,2], log = T))
   #prior
-  ratiobot <- ratiobot + dbeta((res1[i-1,1]-3000)/600, 4.86, 3.44, log = T)+ dbeta((res1[i-1,2]-50)/200, 3, 3, log = T)
+  ratiobot <- ratiobot + dbeta((res1[i-1,1]-3000)/600, 2.98, 6.64, log = T)+ dbeta((res1[i-1,2]-50)/200, 3, 3, log = T)
   if(mustar>=3000 & mustar<=3600 & sigmastar <= 250 & sigmastar >= 50){
     u <- runif(1)
     if(log(u)<(ratiotop-ratiobot)){
